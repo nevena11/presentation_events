@@ -4,23 +4,13 @@ document.getElementById("form").addEventListener("click", function(){
 
 document.getElementById("div").addEventListener("click", function(){
     alert("DIV");
-}, true);
+});
 
 document.getElementById("p").addEventListener("click", function(){
     alert("P");
 });
 
-document.getElementById("p").addEventListener("click", function(){
-    alert("p1");
-}, true);
 
-document.getElementById("p").addEventListener("click", function(){
-    alert("P2");
-}, true);
-
-document.getElementById("p").addEventListener("click", function(event){
-    alert("P3");
-}, false);
 
 //Drugi primer
 

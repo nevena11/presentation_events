@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 <body class="shower list">
-
 	<header class="caption">
 		<h1>Events presentation</h1>
 		<p>Yours Truly, Famous Inc.</p>
@@ -44,9 +43,7 @@
 	<section class="slide">
 		<h2>Bubbling and capturing</h2>
         <h3>Let’s start with an example.</h3>
-
-            <h3>Code samples</h3>
-            <pre>
+ 		<pre>
                 <code>&lt;div onclick="alert('The handler!')"&gt;</code>
                 <code>&lt;em&gt;If you click on &lt;code&gt;EM&lt;/code&gt;,the handler on &lt;code&gt;DIV&lt;/code&gt;runs.&lt;/em&gt;</code>
                 <code>&lt;/div&gt;</code>
@@ -108,7 +105,23 @@
 	<section class="slide">
 		<p><b>Almost all events bubble!</b></p>
 		<p>The key word in this phrase is “almost”.</p>
-		<p>For instance, a focus event does not bubble. There are other examples too. But still it’s an exception, rather than a rule, most events do bubble.</p>
+		<p>For instance, a focus event does not bubble. There are other examples too(<b>HTML frame/object:</b>
+			load,
+			unload,
+			scroll (except that a scroll event on document must bubble to the window),
+			HTML form,
+			focus,
+			blur<br>
+			<b>Mutation:</b>
+			DOMNodeRemovedFromDocument,
+			DOMNodeInsertedIntoDocument<br>
+			<b>Progress:</b>
+			loadstart,
+			progress,
+			error,
+			abort,
+			load,
+			loadend). But most events do bubble.</p>
 	</section>
 
 	<section class="slide">
@@ -125,11 +138,9 @@
 
 	<section class="slide">
 		<h2>Stop bubbling</h2>
-		<p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to document object, and some events even reach window, calling all handlers on the path.
+		<p>Any handler may decide that the event has been fully processed and stop the bubbling.</p>
 
-		But any handler may decide that the event has been fully processed and stop the bubbling.</p>
-
-		<p>The method for it is <b>event.stopPropagation().</b></p>
+		<p>The method for it is <b>event.stopPropagation()</b> or <b>Event.stopImmediatePropagation()</b></p>
 	</section>
 
 	<section class="slide" id="picture">
