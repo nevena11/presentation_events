@@ -45,17 +45,16 @@
         <section class="slide">
             <h2>Bubbling</h2>
             <pre>
-            <code>&lt;div onclick="alert('The handler!')"&gt;</code>
-            <code>&lt;em&gt;If you click on &lt;code&gt;EM&lt;/code&gt;,the handler on
-				&lt;code&gt;DIV&lt;/code&gt;runs.&lt;/em&gt;</code>
-            <code>&lt;/div&gt;</code>
+            <div class="accented" onclick="animateBubble(this)">&lt;div onclick="animate(this)"&gt;
+                    <p class="accented">&lt;button&gt;</p>
+            </div>
         </pre>
 
-            <div onclick="alert('Where did you click?')">
-                <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+            <div onclick="alert('Where did you actually click?')">
+                <em>If you click on <code>button</code>, the event listener on <code>div</code> runs.</em>
             </div>
-            <p>Isn’t it a bit strange? Why the handler on <code>&lt;div&gt;</code> runs if the actual click was on
-                <code>&lt;em&gt;</code>?
+            <p>
+                Why did the listener on <code>div</code> run if the actual click was on <code>button</code> element?
             </p>
         </section>
 
@@ -145,7 +144,7 @@
             <p>Bubbling is convenient. Don’t stop it without a real need: obvious and architecturally well-thought.
                Sometimes
                event.stopPropagation() creates hidden pitfalls that later may become problems.</p>
-            <h3>Think about google analytics or new relic monitoring :)</h3>
+            <em>Think about google analytics or new relic monitoring :)</em>
         </section>
 
         <section class="slide">
@@ -239,9 +238,11 @@
             <p>
                 Most browser-native events that can be canceled are the ones that result from the user interacting with
                 the
-                page. Canceling the click, scroll, or beforeunload events would prevent the user from clicking on
-                something,
-                scrolling the page, or navigating away from the page, respectively.
+                page.
+            </p>
+            <p>
+                Canceling the click, scroll, or beforeunload events would prevent the user from clicking on
+                something, scrolling the page, or navigating away from the page, respectively.
             </p>
         </section>
 
