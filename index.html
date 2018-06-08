@@ -1,274 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Events Presentation</title>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen-16x10.css">
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
-</head>
-<body class="shower list">
-	<header class="caption">
-		<h1>Events presentation</h1>
-		<p>Yours Truly, Famous Inc.</p>
-	</header>
+    <head>
+        <title>Events Presentation</title>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="shower/themes/ribbon/styles/screen-16x10.css">
+        <link rel="stylesheet" type="text/css" href="assets/style.css">
+    </head>
+    <body class="shower list">
+        <header class="caption">
+            <h1>Events presentation</h1>
+            <p>Yours Truly, Famous Inc.</p>
+        </header>
 
-	<section class="slide" id="cover">
-		<h2>Events presentation</h2>
-		<p>Brought to you by Nevena & Aleksandar</a></p>
-		<figure>
-			<img class="cover" src="pictures/cover.jpg" alt="Hands on the orange typewriter in a park">
-		</figure>
-		<style>
-			#cover h2 {
-				margin:30px 0 0;
-				color:#FFF;
-				text-align:center;
-				font-size:70px;
-				}
-			#cover p {
-				margin:10px 0 0;
-				text-align:center;
-				color:#FFF;
-				font-style:italic;
-				font-size:20px;
-				}
-				#cover p a {
-					color:#FFF;
-					}
-		</style>
-	</section>
+        <section class="slide" id="cover">
+            <h2>DOM Events</h2>
+            <p>Brought to you by Nevena & Aleksandar</a></p>
+            <figure>
+                <img class="cover" src="pictures/cover.jpg" alt="Hands on the orange typewriter in a park">
+            </figure>
+            <style>
+                #cover h2 {
+                    margin: 30px 0 0;
+                    color: #FFF;
+                    text-align: center;
+                    font-size: 70px;
+                }
 
-	<section class="slide">
-		<h2>Bubbling and capturing</h2>
-        <h3>Let’s start with an example.</h3>
- 		<pre>
-                <code>&lt;div onclick="alert('The handler!')"&gt;</code>
-                <code>&lt;em&gt;If you click on &lt;code&gt;EM&lt;/code&gt;,the handler on &lt;code&gt;DIV&lt;/code&gt;runs.&lt;/em&gt;</code>
-                <code>&lt;/div&gt;</code>
-            </pre>
+                #cover p {
+                    margin: 10px 0 0;
+                    text-align: center;
+                    color: #FFF;
+                    font-style: italic;
+                    font-size: 20px;
+                }
 
-        <div onclick="alert('The handler!')">
-            <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
-        </div>
-        <p>Isn’t it a bit strange? Why the handler on <code>&lt;div&gt;</code> runs if the actual click was on <code>&lt;em&gt;</code>? </p>
-	</section>
+                #cover p a {
+                    color: #FFF;
+                }
+            </style>
+        </section>
 
-<!-- 2. slajd-->
-
-    <section class="slide">
-		<h2>Bubbling</h2>
-		<p>The bubbling principle is simple.</p>
-        <h2>When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.</h2>
-	</section>
-
-<!-- 3. slajd -->
-
-    <section class="slide">
-            <h2>Example</h2>
-        <pre>
-            <code>&lt;form onclick="alert('form')"&gt;FORM </code>
-            <code>&lt;div onclick="alert('div')"&gt;DIV </code>
-            <code>&lt;p onclick="alert('p')"&gt;P </code>
+        <section class="slide">
+            <h2>Bubbling</h2>
+            <pre>
+            <code>&lt;div onclick="alert('The handler!')"&gt;</code>
+            <code>&lt;em&gt;If you click on &lt;code&gt;EM&lt;/code&gt;,the handler on
+				&lt;code&gt;DIV&lt;/code&gt;runs.&lt;/em&gt;</code>
+            <code>&lt;/div&gt;</code>
         </pre>
 
-        <p>Ako kliknemo unutar <code>&lt;p&gt;</code>, kojim redom ce se dogadjaji izvrsavati?</p>
-        <p>1. FORM, DIV, P</p>
-        <p>2. P, DIV, FORM</p>
-        <p>3. DIV, P, FORM</p>
-    </section>
-
-
-    <section class="slide">
-        <form class="bord" id="form" >FORM
-            <div class="bord" id="div">DIV
-                <p class="bord" id="p">P</p>
+            <div onclick="alert('Where did you click?')">
+                <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
             </div>
-        </form>
+            <p>Isn’t it a bit strange? Why the handler on <code>&lt;div&gt;</code> runs if the actual click was on
+                <code>&lt;em&gt;</code>?
+            </p>
+        </section>
 
-        <p>A click on the inner <code>&lt;p&gt;</code> first runs onclick:</p>
+        <section class="slide">
+            <img style="float: right" src="pictures/bubbling.png" alt="bubbling"/>
+            <h2>Bubbling</h2>
+            <h2>When an event happens on an element, it first runs the handlers on it, then on its parent, then all the
+                way up
+                on other ancestors.</h2>
+            <h3>The process is called “bubbling”, because events “bubble” from the inner element up through parents like
+                a
+                bubble in the water.</h3>
+        </section>
 
-        <p>On that <code>&lt;p&gt;</code>.</p>
-        <p>Then on the outer <code>&lt;div&gt;</code> </p>
-        <p>Then on the outer <code>&lt;form&gt;</code></p>
-        <p>And so on upwards till the document object.</p>
-    </section>
+        <section class="slide">
+            <form class="accented" id="form" onclick="animateBubble(this)">&lt;form onclick="animate(this)"&gt;
+                <div class="accented" id="div" onclick="animateBubble(this)">&lt;div onclick="animate(this)"&gt;
+                    <p class="accented" id="p" onclick="animateBubble(this)">&lt;button onclick="animate(this)"&gt;</p>
+                </div>
+            </form>
+            <p>What happens if we click on <code>&lt;p&gt;</code>? In which order are listeners called?</p>
+            <ol>
+                <li>form, div, button</li>
+                <li>button, div, form</li>
+                <li>div, button, form</li>
+            </ol>
+        </section>
 
+        <section class="slide">
+            <h2>Not all events bubble!</h2>
+            <p>Focus and blur events do not bubble!</p>
+            <p>
+                <strong>HTML frame/object:</strong> load, unload, scroll (except that a scroll event on document must
+                                                    bubble to
+                                                    the window)
+            </p>
+            <p>
+                <strong>Mutation:</strong> DOMNodeRemovedFromDocument, DOMNodeInsertedIntoDocument<br>
+            </p>
+            <p>
+                <strong>Progress:</strong> loadstart, progress, error, abort, load, loadend
+            </p>
+        </section>
 
-	<section class="slide">
-        <img src="pictures/bubbling.png" alt="bubbling"/>
-		<h5>So if we click on <code>&lt;p&gt;</code>, then we’ll see 3 alerts: p → div → form.
-		The process is called “bubbling”, because events “bubble” from the inner element up through parents like a bubble in the water.</h5>
-	</section>
+        <section class="slide">
+            <h2>event.target</h2>
+            <p>
+                <strong>The most deeply nested element that caused the event is called a target element, accessible as
+                        event.target.</strong>
+            </p>
 
-	<section class="slide">
-		<p><b>Almost all events bubble!</b></p>
-		<p>The key word in this phrase is “almost”.</p>
-		<p>For instance, a focus event does not bubble. There are other examples too(<b>HTML frame/object:</b>
-			load,
-			unload,
-			scroll (except that a scroll event on document must bubble to the window),
-			HTML form,
-			focus,
-			blur<br>
-			<b>Mutation:</b>
-			DOMNodeRemovedFromDocument,
-			DOMNodeInsertedIntoDocument<br>
-			<b>Progress:</b>
-			loadstart,
-			progress,
-			error,
-			abort,
-			load,
-			loadend). But most events do bubble.</p>
-	</section>
+            <p>Note the differences from <strong>event.currentTarget</strong>:</p>
 
-	<section class="slide">
-		<h2>event.target</h2>
-		<p><b>The most deeply nested element that caused the event is called a target element, accessible as event.target.</b></p>
+            <ol>
+                <li>event.target – is the “target” element that initiated the event, it doesn’t change through the
+                    bubbling
+                    process.
+                </li>
+                <li>event.currentTarget – is the “current” element, the one that has a currently running handler on
+                    it.
+                </li>
+            </ol>
+        </section>
 
-		<p>Note the differences from this (=event.currentTarget):</p>
+        <section class="slide">
+            <h2>Stop bubbling</h2>
+            <p>Any handler may decide that the event has been fully processed and stop the bubbling.</p>
 
-		<ol>
-			<li>event.target – is the “target” element that initiated the event, it doesn’t change through the bubbling process.</li>
-			<li>this – is the “current” element, the one that has a currently running handler on it.</li>
-		</ol>
-	</section>
+            <p>The methods for this are <strong>event.stopPropagation()</strong> or
+                <strong>event.stopImmediatePropagation()</strong></p>
+        </section>
 
-	<section class="slide">
-		<h2>Stop bubbling</h2>
-		<p>Any handler may decide that the event has been fully processed and stop the bubbling.</p>
+        <section class="slide">
+            <h2>event.stopPropagation</h2>
+            <p>Prevents other listeners of the same event from being called, starting from parent element, listeners on
+               the same
+               element are still called though.</p>
+            <h2>event.stopImmediatePropagation</h2>
+            <p>If several listeners are attached to the same element for the same event type, they are called in order
+               in which
+               they have been added. If during one such call, event.stopImmediatePropagation() is called, no remaining
+               listeners will be called.</p>
+        </section>
 
-		<p>The method for it is <b>event.stopPropagation()</b> or <b>Event.stopImmediatePropagation()</b></p>
-	</section>
+        <section class="slide">
+            <h2>Don’t stop bubbling without a need!</h2>
+            <p>Bubbling is convenient. Don’t stop it without a real need: obvious and architecturally well-thought.
+               Sometimes
+               event.stopPropagation() creates hidden pitfalls that later may become problems.</p>
+            <h3>Think about google analytics or new relic monitoring :)</h3>
+        </section>
 
-	<section class="slide" id="picture">
-		<p>For instance, here body.onclick doesn’t work if you click on <code>&lt;button&gt;</code>: </p>
+        <section class="slide">
+            <h2>What happened before bubbling?</h2>
 
-		<pre>
-			<code>&lt;body onclick="alert(`the bubbling doesn't reach here`)"&gt;</code>
-			<code>&lt;button onclick="event.stopPropagation()"&gt;Click me&lt;/button&gt;</code>
-			<code>&lt;/body&gt;</code>
-		</pre>
+            <p>There’s another phase of event processing called “capturing”. It is rarely used in real code, but
+               sometimes can
+               be useful.</p>
 
-		<p onclick="alert(`the bubbling doesn't reach here`)">
-		<button onclick="event.stopPropagation()">Click me</button>
-		</p>
-	</section>
+            <p>The standard DOM Events describes 3 phases of event propagation:</p>
 
-	<section class="slide">
-		<h2>event.stopImmediatePropagation</h2>
-		<p>Prevents other listeners of the same event from being called.</p>
-		<p>If several listeners are attached to the same element for the same event type, they are called in order in which they have been added. If during one such call, event.stopImmediatePropagation() is called, no remaining listeners will be called.</p>
-	</section>
+            <p>
+                <strong>Capturing phase</strong> – the event goes down to the element.
+            </p>
+            <p>
+                <strong>Target phase</strong> – the event reached the target element.
+            <p>
+            <p>
+                <strong>Bubbling phase</strong> – the event bubbles up from the element.
+            </p>
+        </section>
 
-	<section class="slide">
-		<h2 class="shout shrink">!!!</h2>
-	</section>
+        <section class="slide">
+            <img src="pictures/phases.png" alt="phases" style="float: right;height: 400px;"/>
+            <p>When you click on <code>&lt;td&gt;</code> element the event first goes down through DOM to the element
+               (<em>capturing
+                    phase</em>), then it reaches the target (<em>target phase</em>), and then it goes up (<em>bubbling
+                                                                                                              phase</em>),
+               calling handlers on its way.</p>
+        </section>
 
-	<section class="slide">
-		<h5>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.In other words, event.stopPropagation() stops the move upwards, but on the current element all other handlers will run.To stop the bubbling and prevent handlers on the current element from running, there’s a method event.stopImmediatePropagation(). After it no other handlers execute.</h5>
-		<h5><b>Don’t stop bubbling without a need!</b></h5>
-			<p>Bubbling is convenient. Don’t stop it without a real need: obvious and architecturally well-thought. Sometimes event.stopPropagation() creates hidden pitfalls that later may become problems.</p>
-	</section>
+        <section class="slide">
+            <h2>Do not use inline on-event functions!</h2>
+            <p>To add event listener on element use <strong>addEventListener</strong> method.</p>
+            <pre>
+                <code>
+                    element.addEventListener('click', function(event) {
+                        // do something on click
+                    });
+                </code>
+            </pre>
+        </section>
 
-	<section class="slide">
-		<h2>Capturing</h2>
+        <section class="slide">
+            <p>
+                <strong>addEventListener</strong> allows you to add multiple event listeners and produce maintainable
+                                                  code.
+            </p>
+            <p> To catch an event in the capturing phase, we need to set the <strong>3rd argument</strong> of
+                addEventListener to
+                <strong>true</strong>, otherwise it will only catch event in the bubbling phase.
+            </p>
+            <p>
+                <em>Note for React and Angular users: Frameworks take care of this automatically.</em>
+            </p>
+        </section>
 
-		<p>There’s another phase of event processing called “capturing”. It is rarely used in real code, but sometimes can be useful.</p>
+        <section class="slide">
 
-		<p>The standard DOM Events describes 3 phases of event propagation:</p>
+            <form id="form1" class="accented">form
+                <div id="div1" class="accented">div
+                    <p id="p1" class="accented">p</p>
+                </div>
+            </form>
 
-		<p><b>Capturing phase</b> – the event goes down to the element.</p>
-		<p><b>Target phase</b> – the event reached the target element.<p>
-		<p><b>Bubbling phase</b> – the event bubbles up from the element.</p>
-	</section>
+            <pre>
+                <code>
+                    // Capture phase
+                    element.addEventListener('click', animateCapture, true);
+                    // Bubble phase
+                    element.addEventListener('click', animateBubble);
+                </code>
+            </pre>
+        </section>
 
-	<section class="slide">
-		<img src="pictures/phases.png" alt="phases" style="height: 400px;"/>
-		<p>That is: for a click on <code>&lt;td</code>&gt; the event first goes through the ancestors chain down to the element (capturing), then it reaches the target, and then it goes up (bubbles), calling handlers on its way.</p>
-	</section>
+        <section class="slide">
+            <h2>Event prevent default</h2>
+            <p>
+                <strong>event.preventDefault</strong> tells user agent that default action should not be taken as it
+                                                      normally would be.
+                                                      The event continues to propagate as usual.
+            </p>
+            <p>
+                Events cancelable property indicates if the event can be canceled. If the event is not cancelable event
+                listener cannot stop the event from occurring.
+                <strong>Calling event.preventDefault() on uncancelable events produces errors</strong>.
+            </p>
+        </section>
 
-	<section class="slide">
-		<p>	To catch an event on the capturing phase, we need to set the <b>3rd argument</b> of addEventListener to <b>true</b>.</p>
+        <section class="slide">
+            <p>
+                Most browser-native events that can be canceled are the ones that result from the user interacting with
+                the
+                page. Canceling the click, scroll, or beforeunload events would prevent the user from clicking on
+                something,
+                scrolling the page, or navigating away from the page, respectively.
+            </p>
+        </section>
 
-		<p>There are two possible values for that optional last argument:</p>
+        <section class="slide">
+            <h2>SUMMARY</h2>
 
-		<p>If it’s <b>false</b> (default), then the handler is set on the bubbling phase.</p>
-		<p>If it’s <b>true</b>, then the handler is set on the capturing phase.</p>
-	</section>
+            <ul>
+                <li>
+                    Event first moves from the document root down to the event.target,
+                    calling handlers assigned with addEventListener(...., true) on the way.
+                </li>
+                <li>
+                    The most nested element where event happened gets labeled as the “target element”
+                    <strong>(event.target)</strong>.
+                </li>
+                <li>
+                    Event moves from event.target up to the root, calling assigned handlers.
+                </li>
+            </ul>
+        </section>
 
-	<section class="slide">
+        <section class="slide">
+            <p>Each handler can access event object properties:</p>
+            <ul>
+                <li>event.target – the deepest element that originated the event.</li>
+                <li>event.currentTarget (=this) – the current element that handles the event (the one that has the
+                    handler on it)
+                </li>
+                <li>event.eventPhase – the current phase (capturing=1, bubbling=3).</li>
+                <li>
+                    Any event handler can stop the event by calling event.stopPropagation(), but that’s not recommended,
+                    because we can’t really be sure we won’t need it above, maybe for completely different things.
+                </li>
+            </ul>
+        </section>
 
-		<form id="form1" class="bord">FORM
-			<div id="div1" class="bord">DIV
-				<p id="p1" class="bord">P</p>
-			</div>
-		</form>
+        <script type="text/javascript" src="shower/shower.min.js"></script>
+        <!-- Copyright © 2017 Yours Truly, Famous Inc. -->
 
-		<p>Describe a process if you click on <code>&lt;p</code>&gt; in capture phase and bubbling phase.</p>
-	</section>
-
-	<section class="slide">
-		<p>If you click on <code>&lt;p</code>&gt;, then the sequence is:</p>
-
-		<p>HTML → BODY → FORM → DIV → P (capturing phase, the first listener), and then:</p>
-		<p>P → DIV → FORM → BODY → HTML (bubbling phase, the second listener).</p>
-
-	</section>
-
-	<section class="slide">
-		<h2>Cancelable event</h2>
-		<p>
-			Events' cancelable property indicates if the event can be canceled, and therefore prevented as if the event never happened. If the event is not cancelable, then its cancelable property will be false and the event listener cannot stop the event from occurring.
-			Calling preventDefault() on uncancelable events produces errors, so event listeners that handle multiple kinds of events may want to check cancelable before invoking their preventDefault() methods.
-		</p>
-	</section>
-
-	<section class="slide">
-		<p>
-		Most browser-native events that can be canceled are the ones that result from the user interacting with the page. Canceling the click, scroll, or beforeunload events would prevent the user from clicking on something, scrolling the page, or navigating away from the page, respectively.
-		Custom events created by other JavaScript code control if they can be canceled when they are created</p>
-		<p>Syntax: <b> bool = event.cancelable</b></p>
-		<p>The result is a Boolean, which is true if the event can be canceled.</p>
-	</section>
-
-	<section class="slide">
-		<h2>SUMMARY</h2>
-
-		<ul>
-			<li>
-				When an event happens – the most nested element where it happens gets labeled as the “target element” (event.target).
-			</li>
-			<li>
-				Then the event first moves from the document root down the event.target,
-				calling handlers assigned with addEventListener(...., true) on the way.
-			</li>
-
-			<li>
-				Then the event moves from event.target up to the root,
-				calling handlers assigned using on<code>&lt;event</code>&gt;
-				and addEventListener without the 3rd argument or with the 3rd argument false.
-			</li>
-		</ul>
-	</section>
-
-	<section class="slide">
-		<p>Each handler can access event object properties:</p>
-		<ul>
-			<li>event.target – the deepest element that originated the event.</li>
-			<li>event.currentTarget (=this) – the current element that handles the event (the one that has the handler on it)</li>
-			<li>event.eventPhase – the current phase (capturing=1, bubbling=3).</li>
-		</li>
-			<p>Any event handler can stop the event by calling event.stopPropagation(), but that’s not recommended, because we can’t really be sure we won’t need it above, maybe for completely different things.</p>
-		</ul>
-	</section>
-
-
-	<script src="shower/shower.min.js"></script>
-	<!-- Copyright © 2017 Yours Truly, Famous Inc. -->
-
-    <script src="assets/script.js"></script>
-</body>
+        <script type="text/javascript" src="assets/script.js"></script>
+    </body>
 </html>

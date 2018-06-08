@@ -1,3 +1,43 @@
-.bord {
-    border: solid 1px blue;
+.accented {
+    border: solid 1px #53a7ea;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.animate-bubble {
+    animation: animation-bubble 1s ease;
+    animation-iteration-count: 1;
+}
+
+.animate-capture {
+    animation: animation-capture 1s ease;
+    animation-iteration-count: 1;
+}
+
+@keyframes animation-bubble {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: inset 0 0 5px 10px #53a7ea;
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+@keyframes animation-capture {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: inset 0 0 5px 10px #ea3738;
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+pre, code {
+    white-space: pre-line !important;
 }

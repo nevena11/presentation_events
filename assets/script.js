@@ -1,40 +1,44 @@
-document.getElementById("form").addEventListener("click", function(){
-    alert("FORM");
-});
+var counter = 0;
 
-document.getElementById("div").addEventListener("click", function(){
-    alert("DIV");
-});
+function animateElement(animationClass, element) {
+    setTimeout(function() {
+        element.classList.add(animationClass);
+        setTimeout(function() {
+            element.classList.remove(animationClass);
+            counter--;
+        }, 1000);
+    }, counter * 1000);
+    counter++;
+}
 
-document.getElementById("p").addEventListener("click", function(){
-    alert("P");
-});
+function animateBubble(element) {
+    return animateElement('animate-bubble', element);
+}
 
-
-
-//Drugi primer
+function animateCapture(element) {
+    return animateElement('animate-capture', element);
+}
 
 document.getElementById("form1").addEventListener("click", function(){
-    alert("CAPTURING -> FORM");
+    animateCapture(this);
 }, true);
 
 document.getElementById("div1").addEventListener("click", function(){
-    alert("CAPTURING -> DIV");
+    animateCapture(this);
 }, true);
 
 document.getElementById("p1").addEventListener("click", function(){
-    alert("CAPTURING -> P");
+    animateCapture(this);
 }, true);
 
-document.getElementById("form1").addEventListener("click", function(){
-    alert("BUBBLING -> FORM");
+document.getElementById("p1").addEventListener("click", function(){
+    animateBubble(this);
 });
 
 document.getElementById("div1").addEventListener("click", function(){
-    alert("BUBBLING ->  DIV");
+    animateBubble(this);
 });
 
-document.getElementById("p1").addEventListener("click", function(){
-    alert("BUBBLING -> P");
+document.getElementById("form1").addEventListener("click", function(){
+    animateBubble(this);
 });
-
